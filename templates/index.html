@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <link rel = "icon" type = "image.png" href = "static/weather_favicon.png">
+    <title>Rian's Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body class="{% if weather %}{{ weather.condition_image | lower }}{% endif %}">
+    <h1>Welcome to Rian Balachandran's Weather App!<br></h1><br>
+    <form action = "/" method = "post">
+        <label for="name">Enter City Name   :</label>
+        <input type="text" id = "spot" name = "spot">
+        <br><br> <input type = "submit" id = "Submit"> <button type="button" onclick="window.location.href='/'">Clear</button>
+    </form>
+    <br><br>
+    {% if weather %}
+        <table>
+            <tr>
+                <th>City</th>
+                <td>{{ weather.city }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ weather.country }}</td>
+            </tr>
+            <tr>
+                <th>Temp (C)</th>
+                <td>{{ weather.temp_c }}</td>
+            </tr>
+            <tr>
+                <th>Temp (F)</th>
+                <td>{{ weather.temp_f }}</td>
+            </tr>
+            <tr>
+                <th>Condition</th>
+                <td>{{ weather.condition }}</td>
+            </tr>
+        </table>
+    {% endif %}
+</body>
+</html>
